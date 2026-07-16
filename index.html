@@ -107,7 +107,7 @@ footer a{color:var(--ink);text-decoration:none}
 .sticky-call a{display:block;background:var(--gold);color:#0B1524;text-align:center;font-weight:700;padding:15px;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;font-size:13px;box-shadow:0 12px 30px -8px rgba(0,0,0,.35)}
 .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
 .rv.in{opacity:1;transform:none}
-@media(max-width:900px){
+@media(max-width:900px){#hv-grid{grid-template-columns:1fr!important}
   .hero{padding:80px 0 86px}.hero h1{font-size:38px}.hero .wrap:before{inset:-20px 2%}
   .svc,.why,.quotes{grid-template-columns:1fr}
   nav .links a:not(.cta){display:none}
@@ -120,7 +120,7 @@ footer a{color:var(--ink);text-decoration:none}
 <nav><div class="wrap">
   <a class="logo" href="/">REAL LIVING <span>KC</span></a>
   <div class="links">
-    <a href="#services">Buy & Sell</a><a href="#props">Homes for Sale</a><a href="about.html">About Us</a><a href="#contact" class="cta">Talk to an Agent</a>
+    <a href="#services">Buy & Sell</a><a href="#props">Homes for Sale</a><a href="about.html">About Us</a><a href="tel:+19135132656" style="color:var(--gold)">913.513.2656</a><a href="#contact" class="cta">Talk to an Agent</a>
   </div>
 </div></nav>
 
@@ -129,8 +129,8 @@ footer a{color:var(--ink);text-decoration:none}
     <div class="over">Kansas City · 7017 Oak Street · Hablamos Español</div>
     <h1>Real people. Real homes.<br><em>Real Living.</em></h1>
     <p>Greater Kansas City's bilingual real estate team — guiding first-time buyers, sellers, and investors from first call to keys in hand.</p>
-    <a class="btn gold" href="#contact">Get Started Today</a>
-    <a class="btn line" href="#props" style="margin-left:12px">View Homes</a>
+    <a class="btn gold" href="#props">Find Your Home</a>
+    <a class="btn line" href="#homevalue" style="margin-left:12px">What's My Home Worth?</a>
     <div class="es">Su equipo de bienes raíces en Kansas City — todo el proceso, en su idioma.</div>
   </div>
 </header>
@@ -144,12 +144,12 @@ footer a{color:var(--ink);text-decoration:none}
 
 <section id="services" class="center">
   <div class="wrap">
-    <div class="over">What We Do</div>
+    <div class="over">What We Do Differently</div>
     <h2 class="title">One team for every door in Kansas City</h2>
     <p class="sub">Buying, selling, or investing — the same trusted team handles it under one roof, in English or español.</p>
     <div class="svc">
       <div class="sc"><div class="ph" style="background-image:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=900&q=80&auto=format&fit=crop')"></div><div class="bd"><h3>Buy a Home</h3><p>First-time buyers are our specialty — down-payment assistance programs and guidance in Spanish for familias making their primera casa a reality.</p><a href="#contact">Start Your Search →</a></div></div>
-      <div class="sc"><div class="ph" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80&auto=format&fit=crop')"></div><div class="bd"><h3>Sell for Top Dollar</h3><p>Local pricing expertise, professional marketing, and a team that answers the phone. Ask for your free home value review.</p><a href="#contact">Get My Home's Value →</a></div></div>
+      <div class="sc"><div class="ph" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80&auto=format&fit=crop')"></div><div class="bd"><h3>Sell for Top Dollar</h3><p>We out-market the competition — professional photography, targeted digital campaigns, and pricing built on block-by-block KC data. Ask for your free home value review.</p><a href="#contact">Get My Home's Value →</a></div></div>
       <div class="sc"><div class="ph" style="background-image:url('https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=900&q=80&auto=format&fit=crop')"></div><div class="bd"><h3>Invest in KC</h3><p>We buy, renovate, and manage Kansas City property ourselves — advice from operators, not just salespeople.</p><a href="#contact">Talk Investments →</a></div></div>
     </div>
   </div>
@@ -161,6 +161,25 @@ footer a{color:var(--ink);text-decoration:none}
     <h2 class="title">Available Homes</h2>
     <p class="sub">Live from our inventory — updated the moment our team lists a property.</p></div>
     <div class="pgrid" id="pgrid"><div class="empty">Loading available homes…</div></div>
+  </div>
+</section>
+
+<section id="homevalue" style="background:var(--black);color:#fff;padding:64px 0">
+  <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center" id="hv-grid">
+    <div>
+      <div class="over">Free & No-Pressure</div>
+      <h2 class="title" style="color:#fff">What's your home worth?</h2>
+      <p style="color:#B4BBC6;font-size:15px">Get a free neighborhood value report from a local expert — real comparable sales, not an algorithm's guess. Delivered personally, usually the same day.</p>
+    </div>
+    <form onsubmit="return sendLead(this,'Home value report')" style="display:grid;gap:12px">
+      <input name="name" placeholder="Your name *" required style="padding:14px 16px;background:#141F31;border:1px solid #26344A;color:#fff;font-size:14px;font-family:'Inter'">
+      <input name="phone" placeholder="Cell phone *" required style="padding:14px 16px;background:#141F31;border:1px solid #26344A;color:#fff;font-size:14px;font-family:'Inter'">
+      <input name="msg" placeholder="Property address" style="padding:14px 16px;background:#141F31;border:1px solid #26344A;color:#fff;font-size:14px;font-family:'Inter'">
+      <input type="hidden" name="interest" value="Sell my home — value report">
+      <input class="hp" name="company" tabindex="-1" autocomplete="off">
+      <button class="btn gold">Get My Free Home Value →</button>
+      <div class="ok">✓ On it — a local expert will reach out with your report.</div>
+    </form>
   </div>
 </section>
 
@@ -216,6 +235,12 @@ footer a{color:var(--ink);text-decoration:none}
   <a class="btn gold" href="#contact">Talk To The Team</a>
 </div>
 
+<div style="border-top:1px solid var(--line);background:var(--cream);padding:26px 0">
+  <div class="wrap" style="font-size:12px;color:var(--mut);line-height:1.9">
+    <b style="color:var(--ink);letter-spacing:.1em;text-transform:uppercase;font-size:11px">Serving Greater Kansas City</b><br>
+    Brookside · Waldo · Hyde Park · River Market · Crossroads · Country Club Plaza · Westside · Northeast KC · Independence · Lee's Summit · Raytown · Grandview · North Kansas City · Kansas City KS · Overland Park · Prairie Village · Leawood · Olathe · Lenexa · Shawnee · Mission
+  </div>
+</div>
 <footer><div class="wrap">
   <span>© <span id="yr"></span> Real Living KC · 7017 Oak Street, Kansas City, MO</span>
   <a href="tel:+19135132656">(913) 513-2656</a>
@@ -246,12 +271,14 @@ function renderProps(o){
   const g=document.getElementById('pgrid');
   const ps=(o.properties||[]);
   if(!ps.length){g.innerHTML='<div class="empty">New inventory is being added — tell us what you\'re looking for and we\'ll match you first: <a href="#contact" style="color:var(--gold);font-weight:700">contact the team →</a></div>';return;}
-  g.innerHTML=ps.map((p,i)=>'<div class="prop rv in"><div class="ph" style="background-image:url(\''+(p.photo||HOUSE_PHOTOS[i%HOUSE_PHOTOS.length])+'\')"><span class="ribbon">On Market</span></div><div class="bd">'+
-    '<div class="addr">'+p.address+'</div>'+
+  g.innerHTML=ps.map((p,i)=>{const parts=(p.address||'').split(',');const hood=(parts[1]||'Kansas City').trim().toUpperCase();
+    return '<div class="prop rv in"><div class="ph" style="background-image:url(\''+(p.photo||HOUSE_PHOTOS[i%HOUSE_PHOTOS.length])+'\')"><span class="ribbon">On Market</span></div><div class="bd">'+
+    '<div style="font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:4px">'+hood+'</div>'+
+    '<div class="addr">'+parts[0]+'</div>'+
     '<div class="meta">'+(p.beds?p.beds+' BD':'')+(p.baths?' · '+p.baths+' BA':'')+' · Kansas City</div>'+
     (p.price?'<div class="price">$'+(+p.price).toLocaleString()+'</div>':'')+
     '<a class="btn" href="#contact" onclick="prefillProp(\''+p.address.replace(/'/g,"\\'")+'\')">Ask About This Home</a>'+
-    '</div></div>').join('');
+    '</div></div>';}).join('');
 }
 if(PREVIEW){renderProps({properties:SAMPLE.map(p=>({...p}))});}
 else fetch(API+'?props=1').then(r=>r.json()).then(renderProps).catch(()=>{document.getElementById('pgrid').innerHTML='<div class="empty">Call us for current inventory: (913) 513-2656</div>';});
