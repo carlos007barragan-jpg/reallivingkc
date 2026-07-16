@@ -20,7 +20,7 @@
 {"@context":"https://schema.org","@type":"RealEstateAgent","name":"Real Living KC","alternateName":"Real Living Companies","url":"https://reallivingkc.com","telephone":"+19135132656","address":{"@type":"PostalAddress","streetAddress":"7017 Oak Street","addressLocality":"Kansas City","addressRegion":"MO","postalCode":"64113","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":39.0997,"longitude":-94.5786},"areaServed":["Kansas City MO","Kansas City KS","Overland Park","Independence","Lee's Summit","Olathe"],"knowsLanguage":["en","es"],"founder":{"@type":"Person","name":"Laylani Gonzalez","jobTitle":"Owner & Broker"},"slogan":"Real people. Real homes. Real Living.","priceRange":"$$"}
 </script>
 <style>
-:root{--navy:#0B1B33;--navy2:#122A4D;--ink:#0F172A;--mut:#5B6B84;--line:#E3E9F2;--gold:#C8A24A;--gold2:#B08D3A;--bg:#F7F9FC;--card:#fff;--green:#0E8A5F}
+:root{--navy:#081426;--navy2:#0E2240;--ink:#101828;--mut:#5F6E85;--line:#E6EBF3;--gold:#C6A455;--gold2:#A98A3F;--bg:#FBFCFE;--card:#fff;--green:#0E8A5F}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -116,6 +116,49 @@ footer a{color:#C9D6EA;text-decoration:none}
   .sticky-call{display:block}
   section{padding:46px 0}
 }
+
+/* ——— sophistication layer ——— */
+body{font-size:15.5px}
+h1,h2,h3{letter-spacing:.005em}
+.hero{padding:96px 0 104px}
+.hero h1{font-size:52px;font-weight:700}
+.hero p.lead{font-size:17.5px;line-height:1.7}
+.hero .wrap{gap:56px}
+.kicker{display:inline-flex;align-items:center;gap:10px}
+.kicker:before{content:'';width:34px;height:1px;background:var(--gold)}
+.leadcard{border:1px solid rgba(200,164,85,.35);border-radius:20px;padding:30px}
+.leadcard h3{font-size:21px}
+.btn{border-radius:11px;letter-spacing:.02em}
+nav{backdrop-filter:blur(10px);background:rgba(255,255,255,.92)}
+nav .wrap{height:72px}
+.logo{font-size:22px;letter-spacing:.01em}
+h2.title{font-size:36px;letter-spacing:-.01em}
+.eyebrow{display:inline-flex;align-items:center;gap:10px}
+.eyebrow:before{content:'';width:26px;height:1px;background:var(--gold2)}
+section{padding:78px 0}
+.card{border-radius:16px;padding:30px;transition:transform .25s,box-shadow .25s;border-color:var(--line)}
+.card:hover{transform:translateY(-4px);box-shadow:0 24px 44px -22px rgba(8,20,38,.22)}
+.card .ic{width:50px;height:50px;border-radius:13px;font-size:22px;box-shadow:0 10px 20px -8px rgba(8,20,38,.4)}
+.card h3{font-size:18.5px}
+/* property showcase */
+.pgrid{gap:22px;grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+.prop{border-radius:18px;transition:transform .25s,box-shadow .25s;position:relative}
+.prop:hover{transform:translateY(-5px);box-shadow:0 30px 55px -24px rgba(8,20,38,.3)}
+.prop .ph{height:200px;font-size:40px;position:relative;background:linear-gradient(150deg,#0E2240 0%,#1C3D6B 55%,#31558C 100%)}
+.prop .ph:after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 75% 20%,rgba(198,164,85,.28),transparent 55%)}
+.prop .ribbon{position:absolute;top:14px;left:14px;background:var(--gold);color:var(--navy);font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:999px;z-index:2}
+.prop .bd{padding:20px 22px 24px}
+.prop .addr{font-size:15.5px;font-family:'Playfair Display';color:var(--navy)}
+.prop .price{font-size:24px}
+.prop .meta{letter-spacing:.06em;text-transform:uppercase;font-size:11px}
+.quotes .q{border-radius:16px;position:relative;padding:30px 26px}
+.q:before{content:'“';position:absolute;top:6px;right:18px;font-family:'Playfair Display';font-size:64px;color:rgba(198,164,85,.25);line-height:1}
+.about{position:relative;overflow:hidden}
+.about:before{content:'';position:absolute;left:-140px;bottom:-140px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(198,164,85,.16),transparent 65%)}
+/* reveal on scroll */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+footer{padding:44px 0}
 </style>
 </head>
 <body>
@@ -267,6 +310,10 @@ footer a{color:#C9D6EA;text-decoration:none}
 <script>
 document.getElementById('yr').textContent=new Date().getFullYear();
 const API='https://zfflgvjnkcjnbwydurlp.supabase.co/functions/v1/public';
+const PREVIEW=false;
+const SAMPLE=[{address:'1427 Bales Ave, Kansas City, MO',beds:3,baths:2,price:210000},
+{address:'3906 Wabash Ave, Kansas City, MO',beds:3,baths:1,price:185000},
+{address:'2215 Chelsea Dr, Kansas City, MO',beds:2,baths:1,price:132000}];
 function sendLead(f,src){
   const d=Object.fromEntries(new FormData(f).entries());
   d.source='reallivingkc.com — '+src; d.page=location.pathname;
@@ -276,17 +323,22 @@ function sendLead(f,src){
     .catch(()=>{btn.disabled=false;btn.textContent='Try again';});
   return false;
 }
-fetch(API+'?props=1').then(r=>r.json()).then(o=>{
+function renderProps(o){
   const g=document.getElementById('pgrid');
   const ps=(o.properties||[]);
   if(!ps.length){g.innerHTML='<div class="empty">New inventory is being added — tell us what you\'re looking for and we\'ll match you first: <a href="#contact" style="color:var(--gold2);font-weight:700">contact the team →</a></div>';return;}
-  g.innerHTML=ps.map(p=>'<div class="prop"><div class="ph">🏠</div><div class="bd">'+
+  g.innerHTML=ps.map(p=>'<div class="prop rv in"><div class="ph"><span class="ribbon">On Market</span>🏠</div><div class="bd">'+
     '<div class="addr">'+p.address+'</div>'+
     '<div class="meta">'+(p.beds?p.beds+' bd':'')+(p.baths?' · '+p.baths+' ba':'')+'</div>'+
     (p.price?'<div class="price">$'+(+p.price).toLocaleString()+'</div>':'')+
     '<a class="btn" href="#contact" onclick="prefillProp(\''+p.address.replace(/'/g,"\\'")+'\')">Ask About This Home</a>'+
     '</div></div>').join('');
-}).catch(()=>{document.getElementById('pgrid').innerHTML='<div class="empty">Call us for current inventory: (913) 513-2656</div>';});
+}
+if(PREVIEW){renderProps({properties:SAMPLE.map(p=>({...p}))});}
+else fetch(API+'?props=1').then(r=>r.json()).then(renderProps).catch(()=>{document.getElementById('pgrid').innerHTML='<div class="empty">Call us for current inventory: (913) 513-2656</div>';});
+document.querySelectorAll('section .card,section .q,.step,.info .row').forEach(el=>el.classList.add('rv'));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 function prefillProp(addr){
   const t=document.querySelector('#contact textarea[name=msg]');
   if(t)t.value='I\'m interested in '+addr;
