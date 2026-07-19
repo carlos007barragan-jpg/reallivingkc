@@ -2,7 +2,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>body{font-family:Inter,sans-serif;background:#FAF8F4;color:#16202F;display:grid;place-items:center;min-height:100vh;margin:0;text-align:center;padding:24px}
 h1{font-family:'Cormorant Garamond',serif;font-size:52px;color:#0B1524;margin:0 0 8px}p{color:#66707F;margin:0 0 24px}
-a{display:inline-block;background:#B99247;color:#0B1524;font-weight:600;padding:14px 30px;text-decoration:none;letter-spacing:.12em;text-transform:uppercase;font-size:13px}</style></head>
+a{display:inline-block;background:#B99247;color:#0B1524;font-weight:600;padding:14px 30px;text-decoration:none;letter-spacing:.12em;text-transform:uppercase;font-size:13px}
+/* design-system polish */
+:root{--space:28px}
+section{padding:84px 0}
+.hero{padding:96px 0 84px}
+h2{font-size:clamp(28px,3.6vw,40px);line-height:1.12}
+.over{margin-bottom:14px}
+.tcard{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.tcard:hover{transform:translateY(-4px);box-shadow:0 24px 48px -24px rgba(11,21,36,.22);border-color:rgba(185,146,71,.55)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2.5px solid var(--gold);outline-offset:3px;border-radius:6px}
+.btn,.btn.gold{border-radius:10px}
+/*noshot*/.heroshot{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/4.4;box-shadow:0 46px 90px -40px rgba(11,21,36,.5)}
+.heroshot:before{content:'';position:absolute;inset:-6%;background:url('https://images.unsplash.com/photo-1494526585095-c41746248156?w=1600&q=80&auto=format&fit=crop') center/cover;animation:kb 18s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.09) translateY(-2%)}}
+.heroshot .frame{position:absolute;inset:14px;border:1px solid rgba(185,146,71,.75);border-radius:14px;pointer-events:none}
+.heroshot .chip{position:absolute;bottom:18px;left:18px;background:rgba(250,247,240,.95);backdrop-filter:blur(8px);border-radius:12px;padding:11px 16px;font-size:12.5px;font-weight:700;color:#0B1524;animation:floaty 5.5s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.heroshot{animation:fadeUp .8s ease .3s both}
+.hgrid2{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
+@media(max-width:940px){.hgrid2{grid-template-columns:1fr}.heroshot{aspect-ratio:4/3}section{padding:56px 0}}
+</style></head>
 <body><div><div style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#B99247;font-weight:600;margin-bottom:14px">404</div>
 <h1>This door isn't here.</h1><p>The page you're looking for moved or never existed — but plenty of real doors are waiting.</p>
 <a href="/">Back to the homepage</a></div></body></html>

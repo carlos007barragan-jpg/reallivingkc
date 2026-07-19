@@ -146,6 +146,26 @@ body.navopen nav .links a.cta{margin-top:10px;text-align:center;border-bottom:no
 .socialrow a{display:inline-flex;align-items:center;gap:8px;border:1.5px solid #E7E2D6;border-radius:999px;padding:10px 18px;text-decoration:none;color:var(--black);font-weight:700;font-size:13px;transition:border-color .2s,transform .15s}
 .socialrow a:hover{border-color:var(--gold);transform:translateY(-2px)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+
+/* design-system polish */
+:root{--space:28px}
+section{padding:84px 0}
+.hero{padding:96px 0 84px}
+h2{font-size:clamp(28px,3.6vw,40px);line-height:1.12}
+.over{margin-bottom:14px}
+.tcard{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.tcard:hover{transform:translateY(-4px);box-shadow:0 24px 48px -24px rgba(11,21,36,.22);border-color:rgba(185,146,71,.55)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2.5px solid var(--gold);outline-offset:3px;border-radius:6px}
+.btn,.btn.gold{border-radius:10px}
+/*noshot*/.heroshot{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/4.4;box-shadow:0 46px 90px -40px rgba(11,21,36,.5)}
+.heroshot:before{content:'';position:absolute;inset:-6%;background:url('https://images.unsplash.com/photo-1494526585095-c41746248156?w=1600&q=80&auto=format&fit=crop') center/cover;animation:kb 18s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.09) translateY(-2%)}}
+.heroshot .frame{position:absolute;inset:14px;border:1px solid rgba(185,146,71,.75);border-radius:14px;pointer-events:none}
+.heroshot .chip{position:absolute;bottom:18px;left:18px;background:rgba(250,247,240,.95);backdrop-filter:blur(8px);border-radius:12px;padding:11px 16px;font-size:12.5px;font-weight:700;color:#0B1524;animation:floaty 5.5s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.heroshot{animation:fadeUp .8s ease .3s both}
+.hgrid2{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
+@media(max-width:940px){.hgrid2{grid-template-columns:1fr}.heroshot{aspect-ratio:4/3}section{padding:56px 0}}
 </style><style>@media(max-width:900px){.hw2,.rev3,.vis2{grid-template-columns:1fr!important}}</style></head><body><nav><div class="wrap"><a class="logo" href="index.html">REAL LIVING</a><button class="burger" aria-label="Menu" onclick="document.body.classList.toggle('navopen')">☰</button><div class="links"><a href="homes-for-sale.html">Homes for Sale</a><a href="sell.html">Sell</a><a href="how-we-work.html">How We Work</a><a href="about.html">About Us</a><a class="langpill" href="es/contact.html"><b>EN</b><span>ES</span></a><a href="tel:+19135132656" style="color:var(--gold)">913.513.2656</a><a href="contact.html" class="cta">Contact Us</a></div></div></nav><header class="hero" style="min-height:44vh;padding:90px 0 60px"><div class="wrap"><div class="over">Contact - Visit Us</div><h1 style="font-size:44px">Talk to a real person</h1><p style="max-width:640px">Call, WhatsApp, walk in, or send the form. Either way you get an agent, not a robot.</p></div></header><section id="visit-sec" style="padding-top:0;background:#fff">
 <div class="wrap">
   <div class="center"><div class="over">Find Us</div><h2>Come see us on Oak Street</h2></div>
@@ -161,7 +181,7 @@ body.navopen nav .links a.cta{margin-top:10px;text-align:center;border-bottom:no
       </div>
     </div>
     <div class="rv" style="border-radius:16px;overflow:hidden;border:1px solid #E7E2D6;min-height:300px">
-      <iframe src="https://www.google.com/maps?q=7017+Oak+Street,+Kansas+City,+MO+64113&output=embed" width="100%" height="100%" style="border:0;min-height:300px" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Real Living office map"></iframe>
+      <iframe aria-label="Map to our office" src="https://www.google.com/maps?q=7017+Oak+Street,+Kansas+City,+MO+64113&output=embed" width="100%" height="100%" style="border:0;min-height:300px" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Real Living office map"></iframe>
     </div>
   </div>
 </div>
