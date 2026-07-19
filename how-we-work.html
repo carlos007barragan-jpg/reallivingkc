@@ -194,6 +194,53 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2.5px solid v
   </div>
   <div style="text-align:center;margin-top:30px"><a class="btn gold" href="contact.html">Which Road Fits You? Let's Talk &rarr;</a></div>
 </div></section>
+
+<section id="tools" style="background:#fff"><div class="wrap" style="max-width:920px">
+<div class="over" style="color:var(--gold)">Finance Tools</div>
+<h2>Run your own numbers</h2>
+
+<div class="tcard" style="margin-top:22px;padding:26px">
+<b style="font-family:'Cormorant Garamond',serif;font-size:21px">What price can I afford?</b>
+<p style="font-size:13.5px;color:#5A5346;margin-top:6px">Start from the monthly payment you&rsquo;re comfortable with — we&rsquo;ll work backwards to a home price.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:14px">
+<label style="font-size:12px;color:#5A5346">Comfortable monthly payment<input id="af-pay" type="number" value="1500" style="width:100%;padding:11px;margin-top:5px;border:1px solid #E7E2D6"></label>
+<label style="font-size:12px;color:#5A5346">Down payment<input id="af-down" type="number" value="10000" style="width:100%;padding:11px;margin-top:5px;border:1px solid #E7E2D6"></label>
+<label style="font-size:12px;color:#5A5346">Rate %<input id="af-rate" type="number" step="0.1" value="7.0" style="width:100%;padding:11px;margin-top:5px;border:1px solid #E7E2D6"></label>
+<label style="font-size:12px;color:#5A5346">Years<select id="af-years" style="width:100%;padding:11px;margin-top:5px;border:1px solid #E7E2D6"><option>30</option><option>20</option><option>15</option></select></label>
+</div>
+<div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-top:18px">
+<span style="font-family:'Cormorant Garamond',serif;font-size:40px;color:var(--gold)" id="af-out">$—</span>
+<span style="color:#5A5346;font-size:13px">approximate home price (incl. est. taxes &amp; insurance in the payment)</span>
+</div>
+</div>
+
+<div class="tcard" style="margin-top:18px;padding:26px">
+<b style="font-family:'Cormorant Garamond',serif;font-size:21px">How the rate changes your payment</b>
+<p style="font-size:13.5px;color:#5A5346;margin-top:6px">Same home, four rates — why the financing path matters as much as the price.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px;margin-top:14px">
+<label style="font-size:12px;color:#5A5346">Home price<input id="rs-price" type="number" value="220000" style="width:100%;padding:11px;margin-top:5px;border:1px solid #E7E2D6"></label>
+<label style="font-size:12px;color:#5A5346">Down payment<input id="rs-down" type="number" value="15000" style="width:100%;padding:11px;margin-top:5px;border:1px solid #E7E2D6"></label>
+</div>
+<div id="rs-table" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-top:16px"></div>
+<div style="font-size:11.5px;color:#8A8070;margin-top:12px">P&amp;I only, 30-year term. Bank, ITIN, and owner-finance paths carry different rates — this is why we walk every buyer through all three before picking one.</div>
+</div>
+</div></section>
+<script>
+(function(){const $=i=>document.getElementById(i);
+function af(){const pay=+($('af-pay').value)||0,d=+($('af-down').value)||0,r=(+($('af-rate').value)||7)/100/12,n=(+($('af-years').value)||30)*12;
+// payment covers P&I + est T&I(1.6%/yr of price). Solve price: pay = PI(price-d) + price*0.0016/12*... iterate
+let price=d+100000;
+for(let k=0;k<40;k++){const P=Math.max(0,price-d);const pi=r>0?P*r/(1-Math.pow(1+r,-n)):P/n;const ti=price*0.016/12;const diff=pay-(pi+ti);price+=diff*80;if(Math.abs(diff)<1)break;}
+$('af-out').textContent=price>d?'$'+(Math.round(price/1000)*1000).toLocaleString():'$—';}
+['af-pay','af-down','af-rate','af-years'].forEach(i=>{const e=$(i);if(e)e.addEventListener('input',af)});
+function rs(){const p=+($('rs-price').value)||0,d=+($('rs-down').value)||0,P=Math.max(0,p-d),n=360;
+const rates=[6.5,7.0,7.5,8.5];
+$('rs-table').innerHTML=rates.map(rt=>{const r=rt/100/12;const pi=P*r/(1-Math.pow(1+r,-n));
+return '<div style="border:1px solid #E7E2D6;border-radius:12px;padding:14px;text-align:center;background:#FAF8F4"><div style="font-size:12px;color:#8A8070">'+rt.toFixed(1)+'%</div><div style="font-family:\'Cormorant Garamond\',serif;font-size:26px;color:var(--gold)">$'+Math.round(pi).toLocaleString()+'</div><div style="font-size:11px;color:#8A8070">/mo P&amp;I</div></div>';}).join('');}
+['rs-price','rs-down'].forEach(i=>{const e=$(i);if(e)e.addEventListener('input',rs)});
+if($('af-pay')){af();rs();}
+})();
+</script>
 <section id="faq" style="background:#F7F4EC"><div class="wrap" style="max-width:860px">
 <div class="over" style="color:var(--gold)">Common Questions</div>
 <h2>Straight answers</h2>
@@ -204,7 +251,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2.5px solid v
 <div class="tcard rv"><b>Can you sell my house if it needs work?</b><p style="margin-top:6px">Yes — that&rsquo;s literally one of our businesses. We&rsquo;ll show you a listed price and an as-is cash offer side by side, and you pick.</p></div>
 </div>
 </div></section>
-<footer><div class="wrap"><img src="assets/logo-gold.png" alt="Real Living" style="height:24px;width:auto;margin-right:6px;vertical-align:middle"><span>© <span id="yr"></span> Real Living Companies · 7017 Oak Street, Kansas City, MO · (913) 513-2656</span><a href="privacy.html">Privacy</a><a href="https://www.instagram.com/reallivingkc" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/reallivingkc" target="_blank" rel="noopener">Facebook</a><a href="https://wa.me/19135132656" target="_blank" rel="noopener">WhatsApp</a><div class="brokerline" style="width:100%;margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:11.5px;color:var(--mut)">Brokered by eXp Realty &middot; <svg viewBox="0 0 24 24" width="14" height="14" style="vertical-align:-2px;margin-right:4px" fill="currentColor" aria-hidden="true"><path d="M12 2L1 11h3v11h16V11h3L12 2zm0 2.7L18 10v10H6V10l6-5.3zM8.5 12h7v1.6h-7V12zm0 3.4h7V17h-7v-1.6z"/></svg>Equal Housing Opportunity. Each office is independently owned and operated. Information deemed reliable but not guaranteed.</div></div></footer><script>
+<footer><div class="wrap"><img src="assets/logo-gold.png" alt="Real Living" style="height:24px;width:auto;margin-right:6px;vertical-align:middle"><span>© <span id="yr"></span> Real Living Companies · 7017 Oak Street, Kansas City, MO · (913) 513-2656</span><a href="privacy.html">Privacy</a><a href="https://www.instagram.com/reallivingkc" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/reallivingkc" target="_blank" rel="noopener">Facebook</a><a href="https://wa.me/19135132656" target="_blank" rel="noopener">WhatsApp</a><div class="brokerline" style="width:100%;margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:11.5px;color:var(--mut)">Brokered by eXp Realty &middot; <svg viewBox="0 0 24 24" width="14" height="14" style="vertical-align:-2px;margin-right:4px" fill="currentColor" aria-hidden="true"><path d="M12 2L1 11h3v11h16V11h3L12 2zm0 2.7L18 10v10H6V10l6-5.3zM8.5 12h7v1.6h-7V12zm0 3.4h7V17h-7v-1.6z"/></svg>Equal Housing Opportunity. Each office is independently owned and operated. Information deemed reliable but not guaranteed.</div> <a href="tools.html" style="color:var(--gold);font-weight:700;margin-left:14px">Tools</a></div></footer><script>
 (function(){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){
 const sibs=[...e.target.parentElement.children].filter(x=>x.classList.contains('rv'));
 e.target.style.transitionDelay=(sibs.indexOf(e.target)%4)*90+'ms';
