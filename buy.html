@@ -53,9 +53,23 @@ footer a{color:var(--ink);text-decoration:none}
 .faq details[open] summary:after{content:'\2014'}
 .faq p{color:var(--mut);font-size:14px;margin-top:10px}
 @media(max-width:800px){.hero h1{font-size:32px}.steps{grid-template-columns:1fr}nav .links a:not(.cta){display:none}section{padding:46px 0}}
+
+.burger{display:none;margin-left:auto;background:none;border:1px solid var(--line);border-radius:9px;color:var(--ink);font-size:20px;width:42px;height:42px;cursor:pointer}
+@media(max-width:900px){
+.burger{display:grid;place-items:center}
+nav .links{display:none}
+body.navopen nav .links{display:flex;position:fixed;top:72px;left:0;right:0;background:#fff;flex-direction:column;align-items:stretch;gap:0;padding:10px 20px 20px;border-bottom:1px solid var(--line);box-shadow:0 30px 50px -20px rgba(0,0,0,.35);z-index:49}
+body.navopen nav .links a{display:block!important;padding:14px 4px;font-size:15px;border-bottom:1px solid var(--line)}
+body.navopen nav .links a.cta{margin-top:10px;text-align:center;border-bottom:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+.sticky-call{display:none;position:fixed;bottom:16px;left:16px;right:16px;z-index:60}
+.sticky-call a{display:block;background:var(--gold);color:#0B1524;text-align:center;font-weight:700;padding:15px;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;font-size:13px;box-shadow:0 12px 30px -8px rgba(0,0,0,.35)}
+@media(max-width:900px){.sticky-call{display:block}}
 </style></head><body><nav><div class="wrap">
   <a class="logo" href="index.html">REAL LIVING <span>KC</span></a>
-  <div class="links"><a href="buy.html">Buy</a><a href="sell.html">Sell</a><a href="primera-casa.html">Primera Casa</a><a href="index.html#props">Homes</a><a href="index.html#about">About</a><a href="tel:+19135132656" style="color:var(--gold)">913.513.2656</a><a href="index.html#contact" class="cta">Contact</a></div>
+  <button class="burger" aria-label="Menu" onclick="document.body.classList.toggle('navopen')">☰</button><div class="links"><a href="buy.html">Buy</a><a href="sell.html">Sell</a><a href="primera-casa.html">Primera Casa</a><a href="index.html#props">Homes</a><a href="index.html#about">About</a><a href="tel:+19135132656" style="color:var(--gold)">913.513.2656</a><a href="index.html#contact" class="cta">Contact</a></div>
 </div></nav><header class="hero" style="background:linear-gradient(rgba(8,14,26,.62),rgba(8,14,26,.72)),url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1800&q=80&auto=format&fit=crop') center/cover,#0B1524">
   <div class="wrap"><div class="over">Buyers · Kansas City</div>
   <h1>Your Kansas City home,<br><em style="color:var(--gold);font-style:italic">found and won.</em></h1>
@@ -105,4 +119,8 @@ function sendLead(f,src){
     .catch(()=>{btn.disabled=false;btn.textContent='Try Again';});
   return false;
 }
-</script></body></html>
+</script><div class="sticky-call"><a href="tel:+19135132656">📞 Call Real Living — (913) 513-2656</a></div>
+<script>
+document.querySelectorAll('nav .links a').forEach(a=>a.addEventListener('click',()=>document.body.classList.remove('navopen')));
+</script>
+</body></html>

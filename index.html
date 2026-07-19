@@ -128,13 +128,27 @@ footer a{color:var(--ink);text-decoration:none}
   nav .links a:not(.cta){display:none}
   section{padding:56px 0}.sticky-call{display:block}.strip{gap:26px}
 }
+
+.burger{display:none;margin-left:auto;background:none;border:1px solid var(--line);border-radius:9px;color:var(--ink);font-size:20px;width:42px;height:42px;cursor:pointer}
+@media(max-width:900px){
+.burger{display:grid;place-items:center}
+nav .links{display:none}
+body.navopen nav .links{display:flex;position:fixed;top:76px;left:0;right:0;background:#fff;flex-direction:column;align-items:stretch;gap:0;padding:10px 20px 20px;border-bottom:1px solid var(--line);box-shadow:0 30px 50px -20px rgba(0,0,0,.35);z-index:49}
+body.navopen nav .links a{display:block!important;padding:14px 4px;font-size:15px;border-bottom:1px solid var(--line)}
+body.navopen nav .links a.cta{margin-top:10px;text-align:center;border-bottom:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+.wafab{position:fixed;right:16px;bottom:16px;z-index:70;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 14px 34px -8px rgba(0,0,0,.4);transition:transform .15s}
+.wafab:hover{transform:scale(1.08)}
+@media(max-width:900px){.wafab{bottom:84px}}
 </style>
 </head>
 <body>
 
 <nav><div class="wrap">
   <a class="logo" href="/">REAL LIVING <span>KC</span></a>
-  <div class="links">
+  <button class="burger" aria-label="Menu" onclick="document.body.classList.toggle('navopen')">☰</button><div class="links">
     <a href="buy.html">Buy</a><a href="sell.html">Sell</a><a href="primera-casa.html">Primera Casa</a><a href="#props">Homes for Sale</a><a href="#about">About Us</a><a href="tel:+19135132656" style="color:var(--gold)">913.513.2656</a><a href="#contact" class="cta">Talk to an Agent</a>
   </div>
 </div></nav>
@@ -336,6 +350,10 @@ function prefillProp(addr){
   const t=document.querySelector('#contact textarea[name=msg]');
   if(t)t.value='I\'m interested in '+addr;
 }
+</script>
+<a class="wafab" href="https://wa.me/19135132656?text=Hola%2C%20tengo%20una%20pregunta%20sobre%20una%20propiedad" target="_blank" rel="noopener" aria-label="WhatsApp Real Living"><svg viewBox="0 0 32 32" width="26" height="26" fill="#fff"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.6.8 5 2.3 7L4 29l7.2-2.2c1.9 1 4 1.6 6.3 1.6h.5c6.6 0 12-5.4 12-12S22.6 3 16 3zm5.9 17c-.3.8-1.6 1.5-2.2 1.6-.6.1-1.3.2-3.7-.8-3.1-1.3-5.1-4.4-5.3-4.6-.2-.2-1.3-1.7-1.3-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .5-.1.7.5.3.7.9 2.3 1 2.4.1.2.1.4 0 .6-.1.2-.2.4-.4.6l-.6.7c-.2.2-.4.4-.2.8.2.4 1 1.7 2.2 2.7 1.5 1.3 2.8 1.7 3.2 1.9.4.2.6.2.9-.1.2-.3 1-1.2 1.3-1.6.3-.4.5-.3.9-.2.4.1 2.3 1.1 2.7 1.3.4.2.6.3.7.5.1.1.1.9-.2 1.7z"/></svg></a>
+<script>
+document.querySelectorAll('nav .links a').forEach(a=>a.addEventListener('click',()=>document.body.classList.remove('navopen')));
 </script>
 </body>
 </html>
