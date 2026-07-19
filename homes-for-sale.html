@@ -172,19 +172,19 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2.5px solid v
 </div></section>
 <script>
 fetch('https://zfflgvjnkcjnbwydurlp.supabase.co/functions/v1/public?props=1').then(r=>r.json()).then(js=>{
-  const g=document.getElementById('pgrid');const ps=(js&&js.props)||[];
+  const g=document.getElementById('pgrid');const ps=(js&&(js.properties||js.props))||[];
   if(!ps.length){document.getElementById('pempty').style.display='block';return}
   ps.forEach(p=>{const c=document.createElement('div');c.className='tcard';c.style.padding='0';c.style.overflow='hidden';
   c.innerHTML=`<div style="height:190px;background:url('${p.photo||'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=900&q=80&auto=format&fit=crop'}') center/cover"></div>
   <div style="padding:20px"><div class="over" style="color:var(--gold);font-size:11px">${p.area||'Kansas City'}</div>
   <b style="font-family:'Cormorant Garamond',serif;font-size:21px">${p.title||p.address||'Home for sale'}</b>
   <div style="margin-top:6px;color:#5A5346;font-size:14px">${p.beds?p.beds+' bd | ':''}${p.baths?p.baths+' ba | ':''}${p.price?'$'+Number(p.price).toLocaleString():'Call for price'}</div>
-  <a href="contact.html" style="display:inline-block;margin-top:12px;font-weight:700;color:var(--gold);text-decoration:none;font-size:13px">Schedule a showing &rarr;</a></div>`;
+  <a href="property.html?id=${p.id}" style="display:inline-block;margin-top:12px;font-weight:700;color:var(--gold);text-decoration:none;font-size:13px">See this home &rarr;</a></div>`;
   g.appendChild(c)});
 }).catch(()=>{document.getElementById('pempty').style.display='block'});
 </script><section style="background:var(--black);color:#fff;padding:56px 0"><div class="wrap" style="text-align:center">
 <h2 style="color:#fff">Don't see your home yet?</h2><p style="color:#C9CFD9;max-width:560px;margin:10px auto 22px">Tell us what you're looking for. We often match buyers to homes before they're publicly listed.</p>
-<a class="btn gold" href="contact.html">Tell Us What You Need &rarr;</a></div></section><footer><div class="wrap"><span>© <span id="yr"></span> Real Living Companies · 7017 Oak Street, Kansas City, MO · (913) 513-2656</span><a href="privacy.html">Privacy</a><a href="https://www.instagram.com/reallivingkc" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/reallivingkc" target="_blank" rel="noopener">Facebook</a><a href="https://wa.me/19135132656" target="_blank" rel="noopener">WhatsApp</a></div></footer><script>
+<a class="btn gold" href="contact.html">Tell Us What You Need &rarr;</a></div></section><footer><div class="wrap"><span>© <span id="yr"></span> Real Living Companies · 7017 Oak Street, Kansas City, MO · (913) 513-2656</span><a href="privacy.html">Privacy</a><a href="https://www.instagram.com/reallivingkc" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/reallivingkc" target="_blank" rel="noopener">Facebook</a><a href="https://wa.me/19135132656" target="_blank" rel="noopener">WhatsApp</a><div class="brokerline" style="width:100%;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);font-size:11.5px;opacity:.85">Brokered by eXp Realty &middot; <svg viewBox="0 0 24 24" width="14" height="14" style="vertical-align:-2px;margin-right:4px" fill="currentColor" aria-hidden="true"><path d="M12 2L1 11h3v11h16V11h3L12 2zm0 2.7L18 10v10H6V10l6-5.3zM8.5 12h7v1.6h-7V12zm0 3.4h7V17h-7v-1.6z"/></svg>Equal Housing Opportunity. Each office is independently owned and operated. Information deemed reliable but not guaranteed.</div></div></footer><script>
 (function(){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){
 const sibs=[...e.target.parentElement.children].filter(x=>x.classList.contains('rv'));
 e.target.style.transitionDelay=(sibs.indexOf(e.target)%4)*90+'ms';
